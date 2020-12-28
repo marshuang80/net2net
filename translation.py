@@ -4,6 +4,7 @@ import numpy as np
 from PIL import Image
 import torch
 import torchvision
+import wandb
 from torch.utils.data import random_split, DataLoader, Dataset
 import pytorch_lightning as pl
 from pytorch_lightning import seed_everything
@@ -433,7 +434,7 @@ if __name__ == "__main__":
                 }
             },
         }
-        default_logger_cfg = default_logger_cfgs["testtube"]
+        default_logger_cfg = default_logger_cfgs["wandb"]
         logger_cfg = lightning_config.logger or OmegaConf.create()
         logger_cfg = OmegaConf.merge(default_logger_cfg, logger_cfg)
         trainer_kwargs["logger"] = instantiate_from_config(logger_cfg)
@@ -528,7 +529,7 @@ if __name__ == "__main__":
             except ImportError:
                 import pdb as debugger
             debugger.post_mortem()
-        melk()
+        #melk()
         raise
 
     finally:
